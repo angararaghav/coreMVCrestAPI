@@ -73,13 +73,14 @@ namespace Commander.Controllers
             return NoContent(); 
         } 
         
-       //Patch api/commands/{id}
-       //
-  //[ {
-  //      "op": "Replace",
-  //      "path": "/platform",
-  //      "value": "Pluralsite"
- //   }]
+       
+       
+         //[ {
+         //      "op": "Replace",
+         //      "path": "/platform",
+         //      "value": "Pluralsite"
+         //   }]
+         //Patch api/commands/{id}
        [HttpPatch("{id}")]
        public ActionResult PartialCommandUpdate(int id, JsonPatchDocument<CommandUpdateDto> patchDoc)
        {
@@ -98,6 +99,20 @@ namespace Commander.Controllers
             
             _mapper.Map(commadToPatch, objCommandItem);
             _reporsitory.UpdateCommand(objCommandItem);
+            _reporsitory.SaveChanges();
+            return NoContent();
+       }
+
+        //Delete api/commands/{id}
+        [HttpDelete("{id}")]
+        public ActionResult DeleteCommand(int id)
+       {
+            var objCommandItem = _reporsitory.GetCommandById(id);
+            if(objCommandItem == null)  
+            {
+                return NotFound();
+            }
+            _reporsitory.DeleteCommand(objCommandItem);
             _reporsitory.SaveChanges();
             return NoContent();
        }
