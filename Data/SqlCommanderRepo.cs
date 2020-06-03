@@ -22,5 +22,29 @@ namespace Commander.Data
             return _context.Commands.FirstOrDefault(p => p.Id == Id);
         }
 
+        public void CreateCommand(Command objCommand)
+        {
+            if(objCommand == null)
+                throw new System.ArgumentNullException(nameof(objCommand));
+         
+             _context.Commands.Add(objCommand);
+            
+        } 
+
+        
+        public void UpdateCommand(Command objCommand)
+        {
+            // if(objCommand == null)
+            //     throw new System.ArgumentNullException(nameof(objCommand));
+         
+            //  _context.Commands.Add(objCommand);
+            
+        } 
+
+        public bool SaveChanges()
+        {
+           return (_context.SaveChanges() >= 0);
+        }
+
     }
 }
