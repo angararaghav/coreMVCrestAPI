@@ -41,6 +41,15 @@ namespace Commander.Data
             
         } 
 
+        public void DeleteCommand(Command objCommand)
+        {
+            if(objCommand == null)
+                throw new System.ArgumentNullException(nameof(objCommand));
+         
+             _context.Commands.Remove(objCommand);
+            
+        } 
+
         public bool SaveChanges()
         {
            return (_context.SaveChanges() >= 0);

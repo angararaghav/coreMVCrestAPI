@@ -30,6 +30,11 @@ namespace Commander.Data
         {
             throw new System.NotImplementedException();
         }
+
+         public  void DeleteCommand(Command objCommand)
+        {
+             throw new System.NotImplementedException();
+        }
         public bool SaveChanges()
         {
             return true;
